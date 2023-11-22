@@ -1,0 +1,17 @@
+.footer{
+    width: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    bottom: 0;
+    padding-bottom: 5%;
+    padding-top: 5%;
+/*     border-top: 1px solid var(--main-blue);
+ */    background-color: var(--main-light-blue);
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+.footer-icon{
+    font-size: 22px;
+}
