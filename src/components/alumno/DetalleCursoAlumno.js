@@ -42,7 +42,7 @@ const DetalleCursoAlumno = (props) => {
 
   return (
       <div className="body">
-        <Header title="Curso x"/>
+        <Header title={curso && curso[0].materia} />
         <div className="d-flex p-2 border-bottom mb-4">
             <Link to="/HomeAlumno" href="homeAlumno.html" className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
             

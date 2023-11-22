@@ -33,13 +33,18 @@
  import PerfilProfesor from './components/profesor/PerfilProfesor';
  import SugerenciasProfesor from './components/profesor/SugerenciasProfesor';
  import FormularioProfesor from './components/profesor/FormularioProfesor';
- 
+ import GenerarDidactica from './components/profesor/GenerarDidactica';
+ import GenerarEjemplo from './components/profesor/GenerarEjemplo';
+ import GenerarHerramienta from './components/profesor/GenerarHerramienta';
+
+
  function App() {
   
    return (
      <Router>
  
          <Routes>
+         <Route path="/"  element={<LoginProfesor />} />
            <Route path="/HomeAlumno"  element={<HomeAlumno />} />
            <Route path="/DetalleCursoAlumno/:id"  element={<DetalleCursoAlumno />} />
            <Route path="/OpinionAlumno/:id"  element={<OpinionAlumno />} />
@@ -51,7 +56,7 @@
  
            <Route path="/LoginAlumno"  element={<LoginAlumno />} />
            <Route path="/RegistroAlumno"  element={<RegistroAlumno />} />
-           <Route path="/"  element={<LoginProfesor />} />
+           <Route path="/LoginProfesor"  element={<LoginProfesor />} />
            <Route path="/RegistroProfesor"  element={<RegistroProfesor />} />
            
            <Route path="/HomeProfesor"  element={<HomeProfesor />} />
@@ -61,9 +66,12 @@
            <Route path="/BuscadorProfesor"  element={<BuscadorProfesor />} />
            <Route path="/NuevoCursoProfesor"  element={<NuevoCursoProfesor />} />
            <Route path="/PerfilProfesor"  element={<PerfilProfesor />} />
-           <Route path="/SugerenciasProfesor"  element={<SugerenciasProfesor />} />
-           <Route path="/FormularioProfesor/:id"  element={<FormularioProfesor />} />
- 
+           <Route path="/SugerenciasProfesor/:id"  element={<SugerenciasProfesor />} />
+           <Route path="/FormularioProfesor"  element={<FormularioProfesor />} />
+           <Route path="/GenerarDidactica/:id"  element={<GenerarDidactica />} />
+           <Route path="/GenerarEjemplo/:id"  element={<GenerarEjemplo />} />
+           <Route path="/GenerarHerramienta/:id"  element={<GenerarHerramienta />} />
+
          </Routes>
  
  

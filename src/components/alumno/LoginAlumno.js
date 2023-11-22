@@ -42,7 +42,7 @@ const LoginAlumno = () => {
                 <input type="text" placeholder="Usuario"  
                 value={username}       
                 onChange={(e) => setUsername(e.target.value)} />
-                <input type="text" placeholder="Contraseña"  
+                <input type="password" placeholder="Contraseña"  
                 value={password}
                  onChange={(e) => setPassword(e.target.value)} />
                 <input type="button" value="Ingresar" className="boton text-center"  onClick={handleLogin}/>              
@@ -51,7 +51,7 @@ const LoginAlumno = () => {
 
             <div className="buttons-login">
                 <Link to="/RegistroAlumno" className="boton boton-a">Registrarme</Link>
-                <Link to="/LoginProfesor" className="boton boton-a">Ingresar como profesor</Link>
+                <Link to="/" className="boton boton-a">Ingresar como profesor</Link>
             </div>
         </div>
     </div>

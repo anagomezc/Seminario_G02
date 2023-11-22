@@ -16,8 +16,7 @@ const OpinionesProfesor = (props) => {
   
     const [opiniones, setOpiniones] = useState();
     const [opinionesTotales, setOpinionesTotales] = useState();
-    const [opinionesOportunidad, setOpinionesOportunidad] = useState([]);
-    const [opinionesFeedback, setOpinionesFeedback] = useState([]);
+    const [curso, setCurso] = useState();
 
     const [loading, setLoading] = useState(true);
     const [opinionesCateg, setOpinionesCateg] = useState();
@@ -36,20 +35,21 @@ const OpinionesProfesor = (props) => {
             console.log("RECIBIDO", data);
             setOpinionesTotales(data)
             setOpiniones(data);
-            /* if (opiniones && opiniones.length > 0) {
-                const oportunidad = opiniones.filter(opinion => opinion.clasificacion === "Oportunidad de mejora");
-                const feedback = opiniones.filter(opinion => opinion.clasificacion === "Feedback positivo");
-          
-                setOpinionesOportunidad(oportunidad);
-                setOpinionesFeedback(feedback);
-            }
-           */
 
           } catch (error) {
             console.error('Error en la solicitud:', error);
           } finally {
             setLoading(false);
           }
+
+          try {
+            let response = await fetch(`https://teach-track-backend.onrender.com/cursos/${cursoIdEntero}`);
+            let data = await response.json();
+            setCurso(data);
+
+          } catch (error) {
+            console.error('Error en la solicitud:', error);
+          } 
         };
     
         fetchData();
@@ -59,7 +59,7 @@ const OpinionesProfesor = (props) => {
     
   return (
       <div className="body">
-        <Header title="Curso x"/>
+        <Header title={curso && curso[0].materia} />
         <div className="d-flex p-2 border-bottom mb-4">
             <Link to={`/DetalleCursoProfesor/${cursoId}`}  className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
             

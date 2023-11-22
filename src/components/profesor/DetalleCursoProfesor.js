@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
+
 import '../../styles//styles.css'; 
 import '../../styles/perfil.css'
 
@@ -41,9 +42,9 @@ const DetalleCursoProfesor = (props) => {
 
   return (
       <div className="body">
-        <Header title="Curso x"/>
+        <Header title={curso && curso[0].materia} />
         <div className="d-flex p-2 border-bottom mb-4">
-            <Link to={`/HomeProfesor`}  className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
+            <Link to={`/HomeProfesor/${cursoId}`}  className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
             
             <div className="w-100 text-center"><p >Información del curso</p></div>
            
@@ -55,6 +56,13 @@ const DetalleCursoProfesor = (props) => {
                 <div className="text-left">
                     <p className="fw-bolder">Colegio</p>
                     <p>{curso[0].colegio.nombre}</p>
+                </div>
+            </div>
+            <div className="detalle-curso border-bottom pb-4">
+                <i className="fa-solid fa-shield-cat icon-img align-self-center detalle-curso-icon"></i>
+                <div className="text-left">
+                    <p className="fw-bolder">Materia</p>
+                    <p>{curso[0].materia}</p>
                 </div>
             </div>
             <div className="detalle-curso border-bottom pb-4">
@@ -90,7 +98,7 @@ const DetalleCursoProfesor = (props) => {
                     <p className="fw-bolder">Sugerencias de clase</p>
                     <p>Herramientas, tecnologías, dinámicas, ejemplos y actividades</p>
                 </div>
-                <Link  to="/SugerenciasProfesor" className="fa-solid fa-arrow-right align-self-center" style={{ paddingRight: '5%' }}></Link>
+                <Link  to={`/SugerenciasProfesor/${cursoId}`} className="fa-solid fa-arrow-right align-self-center" style={{ paddingRight: '5%' }}></Link>
 
             </div>
 
@@ -99,7 +107,7 @@ const DetalleCursoProfesor = (props) => {
                 <div className="text-left-pr">
                     <p className="fw-bolder">Formulario para los alumnos</p>
                 </div>
-                <Link  to={`/FormularioProfesor/${cursoId}`} className="fa-solid fa-arrow-right align-self-center" style={{ paddingRight: '5%' }}></Link>
+                <Link  to="/FormularioProfesor/" className="fa-solid fa-arrow-right align-self-center" style={{ paddingRight: '5%' }}></Link>
 
             </div>
             

@@ -39,7 +39,7 @@ const LoginProfesor = () => {
                 <input type="text" placeholder="Usuario"    
                 value={username}       
                 onChange={(e) => setUsername(e.target.value)} />
-                <input type="text" placeholder="Contrasena" 
+                <input type="password" placeholder="Contrasena" 
                  value={password}
                  onChange={(e) => setPassword(e.target.value)} />
                 <input type="button" value="Ingresar" className="boton text-center" onClick={handleLogin}/>              

@@ -23,6 +23,7 @@ const BuscadorProfesor = () => {
     
     console.log("Buscando:", busqueda)
   
+    if(busqueda != '') {
       const requestOptions = {
           method: 'GET', 
           headers: {
@@ -39,8 +40,9 @@ const BuscadorProfesor = () => {
       })
       .catch(error => {
           console.error('Error al enviar la solicitud:', error);
-        });
-    
+      });
+    }
+      
    
   };
   return (
@@ -57,10 +59,11 @@ const BuscadorProfesor = () => {
                 value={busqueda}
                 onChange={handleBusqueda}
               />
+              <button type="submit" className="btn3">
+                Buscar
+              </button>
           </div>
-          <button type="submit" className="btn btn-primary">
-            Buscar
-          </button>
+          
         </form>
         <div className="resultados">
           {resultadosBusqueda.map((curso) => (
