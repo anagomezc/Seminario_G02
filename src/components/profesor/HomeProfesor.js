@@ -33,7 +33,7 @@ const HomeProfesor = () => {
         <div>
             <div className="d-flex justify-content-between p-2 border-bottom mb-4">
             <p>2023</p>
-                <button className="btn3-grey">Ver todos</button>
+                
             </div>
         </div>
 

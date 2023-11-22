@@ -51,7 +51,7 @@
  
            <Route path="/LoginAlumno"  element={<LoginAlumno />} />
            <Route path="/RegistroAlumno"  element={<RegistroAlumno />} />
-           <Route path="/LoginProfesor"  element={<LoginProfesor />} />
+           <Route path="/"  element={<LoginProfesor />} />
            <Route path="/RegistroProfesor"  element={<RegistroProfesor />} />
            
            <Route path="/HomeProfesor"  element={<HomeProfesor />} />
@@ -62,7 +62,7 @@
            <Route path="/NuevoCursoProfesor"  element={<NuevoCursoProfesor />} />
            <Route path="/PerfilProfesor"  element={<PerfilProfesor />} />
            <Route path="/SugerenciasProfesor"  element={<SugerenciasProfesor />} />
-           <Route path="/FormularioProfesor"  element={<FormularioProfesor />} />
+           <Route path="/FormularioProfesor/:id"  element={<FormularioProfesor />} />
  
          </Routes>
  

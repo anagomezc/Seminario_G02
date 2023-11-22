@@ -45,12 +45,12 @@ const FormularioProfesor  = (props) => {
         <div className="d-flex p-2 border-bottom mb-4">
             <Link to={`/DetalleCursoProfesor/${cursoId}`}  className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
             
-            <div className="w-100 text-center"><p >Elegí las preguntas</p></div>
+            <div className="w-100 text-center"><p >Preguntas del curso</p></div>
            
         </div>
 
         <div>
-            <div>
+            {/* <div>
                 <div className="d-flex flex-row text-left p-3">
                     <label htmlFor="" className="labelForm" >¿Cuál de los siguientes dirías que es tu prinicipal interes?</label>
                     <input type="checkbox" className="fs-1 " style={{ width: '10%' }} id="1"/>
@@ -77,9 +77,17 @@ const FormularioProfesor  = (props) => {
                 </div>
             
                 <button className="btn1 p-2">Guardar</button>
-            </div>
+            </div> */}
        
-    
+       <div>
+        {curso && Array.isArray(curso[0].preguntas) && curso[0].preguntas.map((pregunta, index) => (
+          <div className="d-flex flex-row text-left p-3" key={index}>
+            <label htmlFor={`pregunta-${index}`} className="labelForm">{pregunta.texto}</label>
+            <input type="checkbox" className="fs-1" style={{ width: '10%' }} id={`pregunta-${index}`} checked disabled />
+          </div>
+        ))}
+       
+      </div>
        
         </div>
 

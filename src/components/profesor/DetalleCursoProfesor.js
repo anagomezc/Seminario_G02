@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-
 import '../../styles//styles.css'; 
 import '../../styles/perfil.css'
 
@@ -44,7 +43,7 @@ const DetalleCursoProfesor = (props) => {
       <div className="body">
         <Header title="Curso x"/>
         <div className="d-flex p-2 border-bottom mb-4">
-            <Link to={`/HomeProfesor/${cursoId}`}  className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
+            <Link to={`/HomeProfesor`}  className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
             
             <div className="w-100 text-center"><p >Información del curso</p></div>
            
@@ -100,7 +99,7 @@ const DetalleCursoProfesor = (props) => {
                 <div className="text-left-pr">
                     <p className="fw-bolder">Formulario para los alumnos</p>
                 </div>
-                <Link  to="/FormularioProfesor" className="fa-solid fa-arrow-right align-self-center" style={{ paddingRight: '5%' }}></Link>
+                <Link  to={`/FormularioProfesor/${cursoId}`} className="fa-solid fa-arrow-right align-self-center" style={{ paddingRight: '5%' }}></Link>
 
             </div>
             
