@@ -5,6 +5,7 @@ const AuthService = {
   },
 
   login: (username, password) => {
+    console.log("AUTH")
     for (const userType in AuthService.hardCodedUsers) {
       const users = AuthService.hardCodedUsers[userType];
       const user = users.find(u => u.username === username && u.password === password);

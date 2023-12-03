@@ -14,11 +14,13 @@ const LoginProfesor = () => {
 
     const handleLogin = () => {
         const userType = 'alumno'; 
+        console.log(username, password)
         const isSuccess = AuthService.login(username, password);
 
         if (isSuccess) {
         navigate('/HomeProfesor');
         } else {
+            
         setError('Credenciales incorrectas. Por favor, intenta de nuevo.');
         }
     };
@@ -27,7 +29,7 @@ const LoginProfesor = () => {
    
     <div className="login-container">
         <div className="background-shadow">
-            <div class ="welcome">
+            <div className ="welcome">
             <h2 className="tac">Bienvenido</h2>
             <br/>
             <h3 className="tac">Login como profesor</h3>

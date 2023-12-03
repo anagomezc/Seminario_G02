@@ -1,5 +1,5 @@
 /* import logo from './logo.svg';
- */import React from 'react';
+ */import React, { useEffect } from 'react';
  import { BrowserRouter as Router, Route, Routes,useNavigate } from 'react-router-dom';
 
 
@@ -39,7 +39,10 @@
 
 
  function App() {
-  
+  useEffect(() => {
+   console.log("APP")
+  }, []);
+
    return (
      <Router>
  

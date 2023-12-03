@@ -44,7 +44,7 @@ const DetalleCursoProfesor = (props) => {
       <div className="body">
         <Header title={curso && curso[0].materia} />
         <div className="d-flex p-2 border-bottom mb-4">
-            <Link to={`/HomeProfesor/${cursoId}`}  className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
+            <Link to={`/HomeProfesor`}  className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
             
             <div className="w-100 text-center"><p >Información del curso</p></div>
            
