@@ -18,6 +18,7 @@ const DetalleCursoProfesor = (props) => {
 
     const [curso, setCurso] = useState();
     const [loading, setLoading] = useState(true);
+    const [opiniones, setOpiniones] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -33,6 +34,18 @@ const DetalleCursoProfesor = (props) => {
                 let data = await response.json();
                 console.log("RECIBIDO", data);
                 setCurso(data);
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+            } finally {
+                setLoading(false);
+            }
+
+            try {
+                
+                let response = await fetch(`https://teach-track-backend.onrender.com/feedback/cursos/${cursoIdEntero}`);
+                let data = await response.json();
+                console.log("RECIBIDO", data);
+                setOpiniones(data);
             } catch (error) {
                 console.error('Error en la solicitud:', error);
             } finally {
@@ -95,8 +108,10 @@ const DetalleCursoProfesor = (props) => {
                             <i className="fa-regular fa-comment-dots icon-img align-self-center detalle-curso-icon"></i>
                             <div className="text-left-pr">
                                 <p className="fw-bolder">Opiniones</p>
-                                {/* TODO Hardcodeamos esto? Creo que lo hicimos en algún momento pero lo perdí y.y - Ori */}
-                                <p>Pendiente</p>
+                                {opiniones && (
+                                    <p>{opiniones.length}</p>
+                                )}
+                               
                             </div>
                             <Link to={`/OpinionesProfesor/${cursoId}`} className="fa-solid fa-arrow-right align-self-center" style={{ paddingRight: '5%' }}></Link>
                         </div>

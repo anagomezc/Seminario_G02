@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const NuevoCursoAlumno = () => {
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ const NuevoCursoAlumno = () => {
 
     const [cursoId, setCursoId] = useState()
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [validationErrors, setValidationErrors] = useState({
         cursoId: false
@@ -79,7 +81,7 @@ const NuevoCursoAlumno = () => {
     }; */
 
     const handleNuevoCurso = async () => {
-
+        setLoading(true)
         const preguntasSinResponder = preguntas.filter(
             (pregunta) => !respuestas[pregunta.id]
         );
@@ -125,6 +127,7 @@ const NuevoCursoAlumno = () => {
     };
 
     const handleSubmit = async () => {
+        setLoading(true)
         const user = AuthService.getUserData();
         const userId = user.id;
         console.log(cursoId);
@@ -180,9 +183,13 @@ const NuevoCursoAlumno = () => {
       const [cursoNuevoId, setCursoNuevoId] = useState();
       const [modalCreado, setModalCreado] = useState(false);
       const [open, setOpen] = React.useState(false);
-      const handleOpen = () => setOpen(true);
+      const handleOpen = () => {
+          setOpen(true)
+          setLoading(false)
+        }
       const handleClose = () => {
         setOpen(false);
+        setLoading(false)
        /*  navigate(`/DetalleCursoProfesor/${cursoNuevoId}`); */
       }
 
@@ -206,7 +213,22 @@ const NuevoCursoAlumno = () => {
                         onChange={handleCodigoChange} placeholder="Código" aria-label="Username" aria-describedby="basic-addon1" />
               
             </div>
-            <div><button  onClick={handleSubmit} type="button" className="btn btn1">Buscar curso</button></div>
+            <div>
+                {!loading ? (
+                    <button  onClick={handleSubmit} type="button" className="btn btn1">Buscar curso</button>
+                ) : (
+                    <LoadingButton
+                    size="large"
+                    loading={loading}
+                    variant="outlined"
+                    disabled
+                    >
+                        <span>Buscando</span>
+                    </LoadingButton>
+                )}
+                
+                       
+            </div>
 
            {/*  <div className="preguntasCurso">
                 {preguntas && preguntas.map((pregunta, index) => (
@@ -277,13 +299,25 @@ const NuevoCursoAlumno = () => {
                     ))}
                 </div>
                 <br></br>
-                {preguntas && (
-                    <div><button  onClick={handleNuevoCurso} type="button" className="btn btn1">Unirme</button></div>
+               {/*  {preguntas && (
+                   
 
-                )}
+                )} */}
             </Typography>
 
-           
+            {!loading ? (
+                 <div><button  onClick={handleNuevoCurso} type="button" className="btn btn1">Unirme</button></div>
+            ) : (
+                <LoadingButton
+                size="large"
+                loading={loading}
+                variant="outlined"
+                disabled
+                >
+                    <span>Buscando</span>
+                </LoadingButton>
+            )}
+             <br></br>
             <Button variant="text" size="large" sx={{ mt: 2 }} onClick={handleClose}>Cerrar</Button>
             </Box>
         
