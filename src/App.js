@@ -70,11 +70,10 @@
            <Route path="/NuevoCursoProfesor"  element={<NuevoCursoProfesor />} />
            <Route path="/PerfilProfesor"  element={<PerfilProfesor />} />
            <Route path="/SugerenciasProfesor/:id"  element={<SugerenciasProfesor />} />
-           <Route path="/FormularioProfesor"  element={<FormularioProfesor />} />
+           <Route path="/FormularioProfesor/:id"  element={<FormularioProfesor />} />
            <Route path="/GenerarDidactica/:id"  element={<GenerarDidactica />} />
            <Route path="/GenerarEjemplo/:id"  element={<GenerarEjemplo />} />
            <Route path="/GenerarHerramienta/:id"  element={<GenerarHerramienta />} />
-
          </Routes>
  
  

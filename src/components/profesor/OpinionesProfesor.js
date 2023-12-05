@@ -60,7 +60,7 @@ const OpinionesProfesor = (props) => {
   return (
       <div className="body">
         <Header title={curso && curso[0].materia} />
-        <div className="d-flex p-2 border-bottom mb-4">
+        <div className="d-flex p-4 border-bottom mb-4">
             <Link to={`/DetalleCursoProfesor/${cursoId}`}  className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
             
             <div className="w-100 text-center title"><p >Opiniones de los alumnos</p></div>
