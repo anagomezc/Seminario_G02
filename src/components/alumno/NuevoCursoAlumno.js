@@ -9,6 +9,10 @@ import AuthService from '../../services/AuthService'
 import '../../App.css'
 import Header from '../Header';
 import Footer from '../Footer';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 
 const NuevoCursoAlumno = () => {
     const navigate = useNavigate();
@@ -130,6 +134,7 @@ const NuevoCursoAlumno = () => {
           let data = await response.json();
           console.log("RECIBIDO", data[0].preguntas);
           setPreguntas(data[0].preguntas);
+          handleOpen()
         } catch (error) {
           console.error('Error en la solicitud:', error);
         }
@@ -154,6 +159,33 @@ const NuevoCursoAlumno = () => {
           
         })();
     }, []);
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #282c34',
+        borderRadius: 5,
+        boxShadow: 24,
+        p: 4,
+        width: '90%',
+        maxWidth: '90%', // Máximo ancho del modal
+        maxHeight: '80vh',
+        textAlign: 'center',
+        textAlign: 'center',
+        overflowY: 'auto',
+      };
+      const [cursoNuevoId, setCursoNuevoId] = useState();
+      const [modalCreado, setModalCreado] = useState(false);
+      const [open, setOpen] = React.useState(false);
+      const handleOpen = () => setOpen(true);
+      const handleClose = () => {
+        setOpen(false);
+       /*  navigate(`/DetalleCursoProfesor/${cursoNuevoId}`); */
+      }
 
   return (
       <div className="body">
@@ -180,7 +212,7 @@ const NuevoCursoAlumno = () => {
             </div>
             <div><button  onClick={handleSubmit} type="button" className="btn btn1">Buscar curso</button></div>
 
-            <div className="preguntasCurso">
+           {/*  <div className="preguntasCurso">
                 {preguntas && preguntas.map((pregunta, index) => (
                     <div key={index} className="preguntaCurso">
                         <h3>{pregunta.texto}</h3>
@@ -204,7 +236,7 @@ const NuevoCursoAlumno = () => {
             {preguntas && (
                 <div><button  onClick={handleNuevoCurso} type="button" className="btn btn1">Unirme</button></div>
 
-            )}
+            )} */}
 
 
 
@@ -215,6 +247,52 @@ const NuevoCursoAlumno = () => {
         </div>
 
         <Footer />
+
+        <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+        >
+            <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h5" component="h2">
+                Curso encontrado!
+            </Typography>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+                <div >
+                    {preguntas && preguntas.map((pregunta, index) => (
+                        <div key={index} className="preguntaCurso">
+                            <h5>{pregunta.texto}</h5>
+                            {pregunta.opciones && pregunta.opciones.map((opcion, opcIndex) => (
+                                <div className="opcionPregunta">
+                                    <input
+                                        type="radio"
+                                        id={opcion.id}
+                                        name={`pregunta-${pregunta.id}`}
+                                        value={opcion.id}
+                                        checked={respuestas[pregunta.id] === opcion.id}
+                                        onChange={() => handleOptionChange(pregunta.id, opcion.id)}
+                                        className="inputCheck"/>
+                                    <label htmlFor={opcion.id}>{opcion.texto}</label>
+                                </div>
+                            ))}
+                            
+                        </div>
+                    ))}
+                </div>
+                {preguntas && (
+                    <div><button  onClick={handleNuevoCurso} type="button" className="btn btn1">Unirme</button></div>
+
+                )}
+            </Typography>
+
+           
+            <Button variant="text" size="large" sx={{ mt: 2 }} onClick={handleClose}>Cerrar</Button>
+            </Box>
+        
+
+      </Modal>
+
       </div>
   
    

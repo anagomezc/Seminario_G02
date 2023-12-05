@@ -99,6 +99,7 @@ input{
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 1000;
 }
 p{
     margin: 0
@@ -391,10 +392,18 @@ h5{
 .opcionPregunta{
     margin-top: 2%;
     display: flex;
+    font-size: 15px;
     justify-content: center;
+    
 }
 .apiResponse{
     margin: '10px 10px';
     font-size: '16px';
     line-height: '1.6',
+}
+.inputCheck{
+    margin-right: 3%;
+    vertical-align: top;
+    align-self: baseline;
+    margin-top: 2%;
 }

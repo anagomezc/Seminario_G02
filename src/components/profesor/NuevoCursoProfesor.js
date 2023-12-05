@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, TextField, Select, MenuItem, FormControl, InputLabel, Checkbox, FormGroup, FormControlLabel } from '@mui/material';
+import {  TextField, Select, MenuItem, FormControl, InputLabel, Checkbox, FormGroup, FormControlLabel } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../../styles/styles.css';
 import '../../styles/perfil.css';
@@ -8,6 +8,10 @@ import Alert from '@mui/material/Alert';
 import Header from '../Header';
 import Footer from '../Footer';
 import AuthService from '../../services/AuthService';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 
 const NuevoCursoProfesor = (props) => {
   const navigate = useNavigate();
@@ -23,6 +27,20 @@ const NuevoCursoProfesor = (props) => {
     cursoId: false,
   });
 
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #282c34',
+    borderRadius: 5,
+    boxShadow: 24,
+    p: 4,
+    width: '90%',
+    textAlign: 'center',
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,6 +65,15 @@ const NuevoCursoProfesor = (props) => {
   const [preguntasSelecccionadas, setPreguntasSelecccionadas] = useState([]);
   const [selectedCollege, setSelectedCollege] = useState({});
   const [checkedItems, setCheckedItems] = useState([]);
+
+  const [cursoNuevoId, setCursoNuevoId] = useState();
+  const [modalCreado, setModalCreado] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    navigate(`/DetalleCursoProfesor/${cursoNuevoId}`);
+  }
 
   const handleSubmit = () => {
     setIsSubmitted(true);
@@ -98,7 +125,9 @@ const NuevoCursoProfesor = (props) => {
         .then((response) => response.json())
         .then((data) => {
           console.log('Respuesta del servidor:', data);
-          navigate(`/DetalleCursoProfesor/${data.codigo}`);
+          setCursoNuevoId(data.codigo)
+          handleOpen()
+          /* navigate(`/DetalleCursoProfesor/${data.codigo}`); */
         })
         .catch((error) => {
           console.error('Error al enviar la solicitud:', error);
@@ -234,14 +263,45 @@ const NuevoCursoProfesor = (props) => {
 </div>
 
         </div>
-
+       {/*  <LoadingButton
+          size="small"
+          onClick={handleClick}
+          loading={loading}
+          loadingIndicator="Loading…"
+          variant="outlined"
+        >
+          <span>Fetch data</span>
+        </LoadingButton> */}
         <Button onClick={handleSubmit} variant="contained" className="btn1 p-2 mt-4">
           Crear
         </Button>
+       {/*  <LoadingButton loading variant="outlined">
+          Submit
+        </LoadingButton> */}
       </div>
 <p></p>
       <Footer />
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Curso creado exitosamente!
+          </Typography>
+          <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+            Codigo del curso: {cursoNuevoId}
+          </Typography>
+          <Button variant="text" size="large" sx={{ mt: 2 }} onClick={handleClose}>Cerrar</Button>
+        </Box>
+       
+
+      </Modal>
     </div>
+
+    
   );
 };
 

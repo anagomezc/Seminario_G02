@@ -8,6 +8,7 @@ import '../../styles/perfil.css'
 import '../../App.css'
 import Header from '../Header';
 import Footer from '../Footer';
+import { CircularProgress } from '@mui/material'; // Import CircularProgress component
 
 const DetalleCursoAlumno = (props) => {
 
@@ -49,7 +50,10 @@ const DetalleCursoAlumno = (props) => {
             <div className="w-100 text-center"><p >Información del curso</p></div>
            
         </div>
-        {curso && (
+        {loading ? (
+                <CircularProgress /> // Use CircularProgress while loading
+            ) : (
+        curso && (
         <div>
             <div className="detalle-curso border-bottom pb-4">
                 <i className="fa-solid fa-shield-cat icon-img align-self-center detalle-curso-icon"></i>
@@ -94,7 +98,7 @@ const DetalleCursoAlumno = (props) => {
             
             
         </div>
-)}
+))}
         <Footer />
       </div>
   

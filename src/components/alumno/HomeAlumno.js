@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CircularProgress, Button } from '@mui/material';
+import { CircularProgress, IconButton, Button } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Box from '@mui/system/Box';
+
 
 import '../../styles/styles.css';
 import '../../styles/perfil.css';
@@ -56,13 +59,21 @@ const HomeAlumno = () => {
           cursos.map((curso) => (
             <Link to={`/DetalleCursoAlumno/${curso.codigo}`} key={curso.codigo} className="materia-container border-bottom pb-4">
               <i className="fa-solid fa-book icon-img align-self-center"></i>
-              <div className="text-left">
+              <div className="text-left align-self-cen">
                 <p className="fw-bolder">{curso.materia}</p>
                 <p>{curso.profesor.nombre} {curso.profesor.apellido}</p>
               </div>
-              <div className="align-self-center">
-                <ArrowRightIcon />
-              </div>
+              <div >
+                <Box sx={{
+                  position: 'relative',
+                  alignSelf: 'center'
+                }}>
+                    <IconButton  component="span" size="large" style={{ fontSize: 32, alignSelf: 'center' }} color="primary">
+                <ArrowForwardIcon fontSize="inherit" />
+              </IconButton>
+                </Box>
+             
+            </div>
             </Link>
           ))
         )}
