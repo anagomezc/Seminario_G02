@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-
+import {IconButton } from '@mui/material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import '../../styles//styles.css'; 
 import '../../styles/perfil.css'
 
@@ -44,7 +45,7 @@ const DetalleCursoAlumno = (props) => {
   return (
       <div className="body">
         <Header title={curso && curso[0].materia} />
-        <div className="d-flex p-2 border-bottom mb-4">
+        <div className="d-flex p-4 border-bottom mb-4">
             <Link to="/HomeAlumno" href="homeAlumno.html" className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
             
             <div className="w-100 text-center"><p >Información del curso</p></div>
@@ -56,12 +57,19 @@ const DetalleCursoAlumno = (props) => {
         curso && (
         <div>
             <div className="detalle-curso border-bottom pb-4">
-                <i className="fa-solid fa-shield-cat icon-img align-self-center detalle-curso-icon"></i>
+            <i class="fa-solid fa-school fa-4 icon-img align-self-center detalle-curso-icon"></i>
                 <div className="text-left">
                     <p className="fw-bolder">Colegio</p>
                     <p>{curso[0].colegio.nombre}</p>
                 </div>
             </div>
+            <div className="detalle-curso border-bottom pb-4">
+                            <i class="fa-solid fa-pencil fa-4 icon-img align-self-center detalle-curso-icon"></i>
+                            <div className="text-left">
+                                <p className="fw-bolder">Materia</p>
+                                <p>{curso[0].materia}</p>
+                            </div>
+                        </div>
             <div className="detalle-curso border-bottom pb-4">
                 <i class="fa-solid fa-graduation-cap icon-img align-self-center detalle-curso-icon"></i>
                 <div className="text-left">
@@ -86,15 +94,19 @@ const DetalleCursoAlumno = (props) => {
                     </div>
                 </div>
             </div>
-
             <Link to={`/OpinionAlumno/${curso[0].codigo}`} href="opinionAlumno.html">
-                <div className="detalle-curso border-bottom pb-4">
-                <i className="fa-regular fa-comment-dots icon-img align-self-center detalle-curso-icon"></i>    
-                <div className="text-left align-self-center">
-                    <p className="fw-bolder align-items-center">Opinar del curso</p>
-                </div>
-                </div>
-            </Link>
+            <div className="detalle-curso border-bottom pb-4">
+                            <i className="fa-regular fa-comment-dots icon-img align-self-center detalle-curso-icon"></i>
+                            <div className="text-left-pr">
+                                <p className="fw-bolder">Opinar</p>
+                                <p>Opine de su clase y ayude a su profesor a identificar oportunidades de mejora.</p>
+                            </div>
+                            <div className="align-self-center">
+                                <IconButton component="span" size="large" style={{ fontSize: 32 }} color="primary">
+                                    <ArrowForwardIcon fontSize="inherit" />
+                                </IconButton>
+                            </div>
+                        </div></Link>
             
             
         </div>

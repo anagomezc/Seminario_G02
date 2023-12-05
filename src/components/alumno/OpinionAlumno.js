@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 /* import {  Button } from 'react-bootstrap'; 
  */import { useNavigate } from 'react-router-dom';
-
+ import Alert from '@mui/material/Alert';
 import '../../styles//styles.css'; 
 import '../../styles/perfil.css'
 import AuthService from '../../services/AuthService'
@@ -128,14 +128,14 @@ const OpinionAlumno = (props) => {
       <div className="body">
         <Header title="Mis cursos"/>
         <div>
-            <div className="d-flex p-2 border-bottom mb-4">
+            <div className="d-flex p-4 border-bottom mb-4">
             <Link to={`/DetalleCursoAlumno/${cursoId}`} href="homeAlumno.html" className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
                 <div className="w-100 text-center"><p >Opinión de la Materia</p></div>
             
             </div>
         </div>
         <div>
-            <h1>Deja acá tu comentario sobre las clases</h1>
+        <Alert icon={false} severity="info">En este espacio podrá dejar comentarios respecto a la clase o el profesor. Le recomendamos ser conciso y mantener el respeto.</Alert>
             <div className="p-4">
                 <div className="options">
                     {isSubmitted && !clasificacion && (
@@ -149,17 +149,17 @@ const OpinionAlumno = (props) => {
                     <label className="option">
                         <input type="radio" name="choice" value="Feedback positivo" onChange={handleClasificacionChange} />
                         <span className="radio-custom"></span>
-                        Feedback positivo
+                        Agradecimiento
                     </label>
                 </div>
                 <br />
                 {isSubmitted && !texto && (
                         <p className="errorText">* Este campo es obligatorio</p>
                     )}
-                <textarea className="form-control" placeholder="Ingrese su opinión constructiva..." onChange={handleTextoChange}></textarea>
+                <textarea className="form-control" placeholder="Ingrese sus comentarios..." onChange={handleTextoChange}></textarea>
                 <br />
                 <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+                    <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
                     <label className="form-check-label" for="flexCheckChecked">
                     Quiero enviarlo de forma anónima
                     </label>

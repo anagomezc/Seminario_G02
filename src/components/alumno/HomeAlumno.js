@@ -46,7 +46,7 @@ const HomeAlumno = () => {
     <div className="body">
       <Header title="Mis cursos" />
       <div>
-        <div className="d-flex justify-content-between p-2 border-bottom mb-4">
+        <div className="d-flex justify-content-between p-4 border-bottom mb-4">
           <p>2023</p>
           <Button className="btn3-grey">Ver todos</Button>
         </div>

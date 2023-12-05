@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
 import '../../styles//styles.css'; 
 import '../../styles/perfil.css'
 import AuthService from '../../services/AuthService'
-
+import Alert from '@mui/material/Alert';
 import '../../App.css'
 import Header from '../Header';
 import Footer from '../Footer';
@@ -190,17 +189,14 @@ const NuevoCursoAlumno = () => {
   return (
       <div className="body">
         <Header title="Nuevo curso"/>
-        <div>
-            <div className="d-flex p-2 border-bottom mb-4">
-           
-                <div className="w-100 text-center"><p >Agregando nuevo curso</p></div>
-           
+        <div className="d-flex p-4 border-bottom mb-4">
+                <Link to={`/HomeAlumno`} className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
+                <div className="w-100 text-center"><p>Agregar curso</p></div>
             </div>
-        </div>
 
         <div className="errorPadding">
             
-            <h1>Código del curso</h1>
+        <Alert icon={false} severity="info">Ingrese el código de la clase provisto por su profesor, sólo números.</Alert>
 
             <div className="p-4">
             {isSubmitted && !cursoId && (
@@ -256,7 +252,7 @@ const NuevoCursoAlumno = () => {
         >
             <Box sx={style}>
             <Typography id="modal-modal-title" variant="h5" component="h2">
-                Curso encontrado!
+            ¡Curso encontrado!
             </Typography>
             <Typography id="modal-modal-title" variant="h6" component="h2">
                 <div >
@@ -280,6 +276,7 @@ const NuevoCursoAlumno = () => {
                         </div>
                     ))}
                 </div>
+                <br></br>
                 {preguntas && (
                     <div><button  onClick={handleNuevoCurso} type="button" className="btn btn1">Unirme</button></div>
 

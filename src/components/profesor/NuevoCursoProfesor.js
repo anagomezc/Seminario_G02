@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {  TextField, Select, MenuItem, FormControl, InputLabel, Checkbox, FormGroup, FormControlLabel } from '@mui/material';
+import { TextField, Select, MenuItem, FormControl, InputLabel, Checkbox, FormGroup, FormControlLabel } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../../styles/styles.css';
 import '../../styles/perfil.css';
@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const NuevoCursoProfesor = (props) => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const NuevoCursoProfesor = (props) => {
   const profesor_id = profesor.id;
 
   const [colegios, setColegios] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState({
     cursoId: false,
@@ -41,9 +42,11 @@ const NuevoCursoProfesor = (props) => {
     width: '90%',
     textAlign: 'center',
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         let response = await fetch(`https://teach-track-backend.onrender.com/colegios`);
         let data = await response.json();
         console.log('RECIBIDO', data);
@@ -77,6 +80,7 @@ const NuevoCursoProfesor = (props) => {
 
   const handleSubmit = () => {
     setIsSubmitted(true);
+    setLoading(true); // Set loading to true when submitting
     const colegio_id = 3;
 
     const datosAEnviar = {
@@ -122,17 +126,19 @@ const NuevoCursoProfesor = (props) => {
       };
 
       fetch(`https://teach-track-backend.onrender.com/cursos`, requestOptions)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Respuesta del servidor:', data);
-          setCursoNuevoId(data.codigo)
-          handleOpen()
-          /* navigate(`/DetalleCursoProfesor/${data.codigo}`); */
-        })
-        .catch((error) => {
-          console.error('Error al enviar la solicitud:', error);
-        });
-    }
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Respuesta del servidor:', data);
+        setCursoNuevoId(data.codigo);
+        handleOpen();
+      })
+      .catch((error) => {
+        console.error('Error al enviar la solicitud:', error);
+      })
+      .finally(() => {
+        setLoading(false); // Set loading to false after handling the response
+      });
+  }
 
     console.log('Enviando: ', datosAEnviar);
   };
@@ -170,7 +176,7 @@ const NuevoCursoProfesor = (props) => {
   return (
     <div className="body">
       <Header title="Creando nuevo curso" />
-        <Alert icon={false} severity="info">Usted está creando un nuevo curso.</Alert>
+      <Alert icon={false} severity="info">Usted está creando un nuevo curso.</Alert>
       <div>
         <div className="d-flex flex-column text-left p-3">
           <label htmlFor="" className="mb-2">
@@ -228,58 +234,52 @@ const NuevoCursoProfesor = (props) => {
         </div>
 
         <Alert icon={false} severity="info">Elija las preguntas que quiera que sus alumnos respondan.
-        Usaremos sus respuestas para ayudarlo a generar nuevas ideas para la clase.</Alert>
+          Usaremos sus respuestas para ayudarlo a generar nuevas ideas para la clase.</Alert>
         {isSubmitted && !preguntasSelecccionadas && (
           <p className="errorText mt-2">* Este campo es obligatorio.</p>
         )}
         <div className="mt-2">
-        <div className="mt-4">
-  <FormGroup style={{ padding: '0 16px' }}>
-    <FormControlLabel
-      control={<Checkbox value="1" onChange={handleChangeCheck} />}
-      label="¿Cuál de los siguientes dirías que es tu principal interés?"
-    />
-    <FormControlLabel
-      control={<Checkbox value="2" onChange={handleChangeCheck} />}
-      label="¿Cuál es tu nivel de expectativa de esta materia?"
-    />
-    <FormControlLabel
-      control={<Checkbox value="3" onChange={handleChangeCheck} />}
-      label="¿Preferís trabajar individualmente o en grupo?"
-    />
-    <FormControlLabel
-      control={<Checkbox value="4" onChange={handleChangeCheck} />}
-      label="¿Te consideras una persona introvertida o extrovertida?"
-    />
-    <FormControlLabel
-      control={<Checkbox value="5" onChange={handleChangeCheck} />}
-      label="¿Preferis escribir informes o dar presentaciones?"
-    />
-    <FormControlLabel
-      control={<Checkbox value="6" onChange={handleChangeCheck} />}
-      label="¿Qué tan difícil te resultó esta materia en años anteriores?"
-    />
-  </FormGroup>
-</div>
+          <div className="mt-4">
+            <FormGroup style={{ padding: '0 16px' }}>
+              <FormControlLabel
+                control={<Checkbox value="1" onChange={handleChangeCheck} />}
+                label="¿Cuál de los siguientes dirías que es tu principal interés?"
+              />
+              <FormControlLabel
+                control={<Checkbox value="2" onChange={handleChangeCheck} />}
+                label="¿Cuál es tu nivel de expectativa de esta materia?"
+              />
+              <FormControlLabel
+                control={<Checkbox value="3" onChange={handleChangeCheck} />}
+                label="¿Preferís trabajar individualmente o en grupo?"
+              />
+              <FormControlLabel
+                control={<Checkbox value="4" onChange={handleChangeCheck} />}
+                label="¿Te consideras una persona introvertida o extrovertida?"
+              />
+              <FormControlLabel
+                control={<Checkbox value="5" onChange={handleChangeCheck} />}
+                label="¿Preferis escribir informes o dar presentaciones?"
+              />
+              <FormControlLabel
+                control={<Checkbox value="6" onChange={handleChangeCheck} />}
+                label="¿Qué tan difícil te resultó esta materia en años anteriores?"
+              />
+            </FormGroup>
+          </div>
 
         </div>
-       {/*  <LoadingButton
-          size="small"
-          onClick={handleClick}
-          loading={loading}
-          loadingIndicator="Loading…"
-          variant="outlined"
+        <Button
+          onClick={handleSubmit}
+          variant="contained"
+          className="btn1 p-2 mt-4"
+          disabled={loading}
         >
-          <span>Fetch data</span>
-        </LoadingButton> */}
-        <Button onClick={handleSubmit} variant="contained" className="btn1 p-2 mt-4">
-          Crear
+          {loading ? <CircularProgress size={24} style={{ color: 'white' }} /> : 'Crear'}
         </Button>
-       {/*  <LoadingButton loading variant="outlined">
-          Submit
-        </LoadingButton> */}
+
       </div>
-<p></p>
+      <p></p>
       <Footer />
       <Modal
         open={open}
@@ -289,19 +289,21 @@ const NuevoCursoProfesor = (props) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Curso creado exitosamente!
+            ¡Curso creado exitosamente!
           </Typography>
           <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
-            Codigo del curso: {cursoNuevoId}
+            Código del curso: <b>{cursoNuevoId}</b>
           </Typography>
+          <p>Ahora puede compartir este código con sus alumnos para que ingresen a su clase.</p>
           <Button variant="text" size="large" sx={{ mt: 2 }} onClick={handleClose}>Cerrar</Button>
         </Box>
-       
+
 
       </Modal>
+      <br></br>
     </div>
 
-    
+
   );
 };
 

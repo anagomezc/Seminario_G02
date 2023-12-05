@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { CircularProgress } from '@mui/material'; // Import CircularProgress component
+import { CircularProgress, Tooltip } from '@mui/material'; // Import CircularProgress component
+import Alert from '@mui/material/Alert';
+import Chip from '@mui/material/Chip';
 
 import '../../styles//styles.css';
 import '../../styles/perfil.css';
-
+import { IconButton } from '@mui/material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import '../../App.css';
 import Header from '../Header';
 import Footer from '../Footer';
@@ -42,10 +45,16 @@ const DetalleCursoProfesor = (props) => {
 
     return (
         <div className="body">
-            <Header title={curso && curso[0].materia} />
+            <Header title={''} />
             <div className="d-flex p-4 border-bottom mb-4">
                 <Link to={`/HomeProfesor`} className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
-                <div className="w-100 text-center"><p>Información del curso</p></div>
+                <div className="w-100 text-center">
+                    <p>Código del curso: {curso && (
+                        <Tooltip title="Comparte el código del curso con tus alumnos para que estos puedan unirse." arrow>
+                            <Chip label={curso[0].codigo} color="primary" />
+                        </Tooltip>
+                    )}</p>
+                </div>
             </div>
             {loading ? (
                 <CircularProgress /> // Use CircularProgress while loading
@@ -53,21 +62,21 @@ const DetalleCursoProfesor = (props) => {
                 curso && (
                     <div>
                         <div className="detalle-curso border-bottom pb-4">
-                        <i class="fa-solid fa-school fa-4 icon-img align-self-center detalle-curso-icon"></i>
+                            <i class="fa-solid fa-school fa-4 icon-img align-self-center detalle-curso-icon"></i>
                             <div className="text-left">
                                 <p className="fw-bolder">Colegio</p>
                                 <p>{curso[0].colegio.nombre}</p>
                             </div>
                         </div>
                         <div className="detalle-curso border-bottom pb-4">
-                        <i class="fa-solid fa-pencil fa-4 icon-img align-self-center detalle-curso-icon"></i>
+                            <i class="fa-solid fa-pencil fa-4 icon-img align-self-center detalle-curso-icon"></i>
                             <div className="text-left">
                                 <p className="fw-bolder">Materia</p>
                                 <p>{curso[0].materia}</p>
                             </div>
                         </div>
                         <div className="detalle-curso border-bottom pb-4">
-                        <i class="fa-solid fa-graduation-cap fa-4 icon-img align-self-center detalle-curso-icon"></i>
+                            <i class="fa-solid fa-graduation-cap fa-4 icon-img align-self-center detalle-curso-icon"></i>
                             <div className="text-left">
                                 <p className="fw-bolder">Curso</p>
                                 <p>{curso[0].anio_cursado}° "{curso[0].division}"</p>
@@ -108,6 +117,7 @@ const DetalleCursoProfesor = (props) => {
                                 <p>Revise las preguntas que sus alumnos deberán contestar para unirse al curso.</p>
                             </div>
                             <Link to={`/FormularioProfesor/${cursoId}`} className="fa-solid fa-arrow-right align-self-center" style={{ paddingRight: '5%' }}></Link>
+
                         </div>
 
                     </div>

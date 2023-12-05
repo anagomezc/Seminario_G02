@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import '../../styles//styles.css'; 
 import '../../styles/perfil.css'
-
+import Alert from '@mui/material/Alert';
 import '../../App.css'
 import Header from '../Header';
 import Footer from '../Footer';
@@ -59,17 +59,17 @@ const SugerenciasProfesor = (props) => {
     
   return (
       <div className="body">
-        <Header title="Curso x"/>
-        <div className="d-flex p-2 border-bottom mb-4">
+        <Header title=""/>
+        <div className="d-flex p-4 border-bottom mb-4">
             <Link to={`/DetalleCursoProfesor/${cursoId}`}  className="align-self-center"><i className="fa-solid fa-arrow-left"></i></Link>
             
             <div className="w-100 text-center title"><p >Sugerencias para el profesor</p></div>
-           
         </div>
         <div className="detalle-curso border-bottom pb-4">
                 <i className="fa-solid fa-wand-magic-sparkles icon-img align-self-center detalle-curso-icon"></i>
                 <div className="text-left-pr">
                     <p className="fw-bolder">Ejemplos</p>
+                    <p>Generemos un ejemplo conceptual para reforzar los conocimientos de la clase.</p>
                 </div>
                 <Link  to={`/GenerarEjemplo/${cursoIdEntero}`} className="fa-solid fa-arrow-right align-self-center" style={{ paddingRight: '5%' }}></Link>
 
@@ -78,6 +78,7 @@ const SugerenciasProfesor = (props) => {
                 <i className="fa-solid fa-wand-magic-sparkles icon-img align-self-center detalle-curso-icon"></i>
                 <div className="text-left-pr">
                     <p className="fw-bolder">Didácticas</p>
+                    <p>Pensemos en una actividad para realizar en clase basándonos en los gustos de tus alumnos.</p>
                 </div>
                 <Link  to={`/GenerarDidactica/${cursoIdEntero}`} className="fa-solid fa-arrow-right align-self-center" style={{ paddingRight: '5%' }}></Link>
 
@@ -86,6 +87,7 @@ const SugerenciasProfesor = (props) => {
                 <i className="fa-solid fa-wand-magic-sparkles icon-img align-self-center detalle-curso-icon"></i>
                 <div className="text-left-pr">
                     <p className="fw-bolder">Herramientas</p>
+                    <p>Busquemos nuevas herramientas para implementar en tus clases.</p>
                 </div>
                 <Link  to={`/GenerarHerramienta/${cursoIdEntero}`} className="fa-solid fa-arrow-right align-self-center" style={{ paddingRight: '5%' }}></Link>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import '../../styles/styles.css'; 
@@ -12,18 +12,32 @@ import AuthService from '../../services/AuthService'
 
 const PerfilProfesor = () => {
     const navigate = useNavigate();
-
+    const user = AuthService.getUserData();
+    console.log("RECIBIDO", user);
+    useEffect(() => {
+        const fetchData = async () => {
+          const user = AuthService.getUserData();
+          const userId = user.id;
+    
+        };
+    
+        fetchData();
+      }, []);
     const handleLogout = () => {
         AuthService.logout();
-        navigate('/LoginProfesor');
+        navigate('/LoginAlumno');
     };
   return (
       <div className="body">
         <Header title="Mi perfil"/>
+        <br>
+        </br>
+        <br></br>
         <div className="perfil-info p-4">
-            <img src="../../assets/persona.jpg" alt="Logo" className="imagen-redonda" />
-            <h3>CARLOS PEREZ</h3>
-            <h4>carlos_perez@gmail.com</h4>
+        <i class="fa-regular fa-user fa-2xl"></i>
+        <br></br>
+            <h3>{user.username}</h3>
+            <h4>{user.userType}</h4>
             <div className="botones-perfil">
                 <h5>Editar datos de perfil</h5>
                 <h5>Notificaciones</h5>

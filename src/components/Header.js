@@ -8,7 +8,16 @@ import AuthService from '../services/AuthService';
 const Header = (props) => {
   const [perfilLink, setPerfilLink] = useState('');
   const [homeLink, setHomeLink] = useState('');
-
+  const user = AuthService.getUserData();
+  const userName = user.userName;
+  console.log("RECIBIDO", user);
+    useEffect(() => {
+        const fetchData = async () => {
+          const user = AuthService.getUserData();
+        };
+    
+        fetchData();
+      }, []);
   useEffect(() => {
     const userType = AuthService.getUserType();
     console.log(userType);
@@ -56,7 +65,7 @@ const Header = (props) => {
           </Link>
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <h3 style={{ margin: '0', verticalAlign: 'middle', marginRight: '10px' }}>{props.title}</h3>
+          <h3 style={{ margin: '0', verticalAlign: 'middle', marginRight: '10px' }}>{user.username}</h3>
           <Link to={perfilLink}>
             <AccountCircleIcon style={{ fontSize: '2rem', color: '#fff', cursor: 'pointer', transition: 'color 1s ease-in-out' }}
               onMouseOver={(e) => e.target.style.color = '#2196F3'}
