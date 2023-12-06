@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
-import logo from '../assets/logo.png'; // Replace with the actual path to your logo image
+import logo from '../assets/Logo-Blanco.png'; // Replace with the actual path to your logo image
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AuthService from '../services/AuthService';
 
@@ -60,7 +60,7 @@ const Header = (props) => {
               onMouseOver={(e) => e.target.style.color = '#2196F3'}
               onMouseOut={(e) => e.target.style.color = '#fff'}
             >
-              CheProfe!
+              Class-E
             </Typography>
           </Link>
         </div>

@@ -15,7 +15,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
 
 import welcomeImage from '../../assets/teacher.png'; // Replace with the actual path to your image file
-import logo from '../../assets/logo.png'; // Replace with the actual path to your image file
+import logo from '../../assets/Azul.png'; // Replace with the actual path to your image file
 
 const RegisterProfesor = () => {
   return (

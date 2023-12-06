@@ -1,7 +1,7 @@
 const AuthService = {
   hardCodedUsers: {
-    profesor: [{ username: 'profesor1', password: '123', id: 1 }, { username: 'profesor2', password: '456', id: 2 }],
-    alumno: [{ username: 'JuanPaez', password: 'JuanPaez', id: 1 }, { username: 'GonzaloReyes', password: 'GonzaloReyes', id: 2 }],
+    profesor: [{ username: 'profesor1', password: '1', id: 1 }, { username: 'profesor2', password: '1', id: 2 }],
+    alumno: [{ username: 'JuanPaez', password: '1', id: 1 }, { username: 'GonzaloReyes', password: '1', id: 2 }],
   },
 
   login: (username, password) => {

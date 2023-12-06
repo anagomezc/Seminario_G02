@@ -13,7 +13,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
 import { InputAdornment, IconButton } from '@mui/material';
 import welcomeImage from '../../assets/teacher.png'; // Replace with the actual path to your image file
-import logo from '../../assets/logo.png'; // Replace with the actual path to your image file
+import logo from '../../assets/Azul.png'; // Replace with the actual path to your image file
 import AuthService from '../../services/AuthService';
 
 const LoginProfesor = () => {
@@ -70,6 +70,9 @@ const LoginProfesor = () => {
               animation: 'float 3s ease-in-out infinite',
             }}
           />
+           <Typography component="h1" variant="h4" style={{ marginBottom: 20 }}>
+            Class-E
+          </Typography>
           <Typography component="h1" variant="h4" style={{ marginBottom: 20 }}>
             ¡Bienvenido!
           </Typography>
